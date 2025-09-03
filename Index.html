@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hara Event Organizer - Wujudkan Acara Impian Anda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        * {margin: 0; padding: 0; box-sizing: border-box;}
+        body {font-family: 'Roboto', sans-serif; background-color: #f7f3f2; color: #333; line-height: 1.6;}
+        a {text-decoration: none; color: inherit;}
+        section {padding: 80px 20px; max-width: 1200px; margin: auto;}
+        h2.section-title {
+            text-align: center; margin-bottom: 60px; font-size: 2.8rem;
+            font-family: 'Playfair Display', serif; color: #6a0572;
+            position: relative; padding-bottom: 15px;
+        }
+        h2.section-title::after {
+            content: ''; width: 100px; height: 4px; background: linear-gradient(to right, #6a0572, #ab15a5);
+            display: block; margin: 10px auto 0; border-radius: 3px;
+        }
+
+        /* Header */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: linear-gradient(90deg, #6a0572, #ab15a5);
+            padding: 15px 30px;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
+            animation: slideInDown 0.8s ease-out;
+        }
+        @keyframes slideInDown {
+            from {transform: translateY(-100%); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+        header .logo {display: flex; align-items: center;}
+        header .logo img {
+            width: 70px; height: 70px; object-fit: cover; border-radius: 50%;
+            border: 3px solid #fff; margin-right: 20px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+        header .logo h1 {
+            font-family: 'Playfair Display', serif; color: #fff;
+            font-size: 2.5rem; letter-spacing: 2px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+            /* Background baru untuk judul */
+            background-color: rgba(171, 21, 165, 0.7);
+            padding: 8px 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        nav a {
+            color: #fff; text-decoration: none; margin: 0 20px; font-weight: 500;
+            font-size: 1.1rem; transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+        nav a::after {
+            content: ''; position: absolute; left: 0; bottom: -5px;
+            width: 0; height: 2px; background: #ffe6f0;
+            transition: width 0.3s ease-in-out;
+        }
+        nav a:hover::after {width: 100%;}
+        nav a:hover {color: #ffe6f0; transform: translateY(-3px);}
+
+        /* Hero Section */
+        .hero {
+            height: 90vh; display: flex; justify-content: center; align-items: center;
+            text-align: center; color: #fff; position: relative;
+            overflow: hidden;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+        .hero-content {
+            z-index: 2; animation: fadeInScale 2s ease-out;
+            max-width: 800px; padding: 20px;
+        }
+        @keyframes fadeInScale {
+            0% {opacity: 0; transform: scale(0.8);}
+            100% {opacity: 1; transform: scale(1);}
+        }
+        .hero h2 {
+            font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 20px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.5rem; margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+        }
+        .cta-button {
+            display: inline-block; padding: 15px 35px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff; border-radius: 50px; text-decoration: none;
+            font-weight: 700; font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(255, 126, 95, 0.4);
+            transition: all 0.4s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 126, 95, 0.6);
+            background: linear-gradient(to right, #feb47b, #ff7e5f);
+        }
+
+        /* Services Categories */
+        #categories {background-color: #fcebeb;}
+        .category-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .category-card {
+            background: #fff; border-radius: 25px; padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease; text-align: center;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to bottom right, #ffffff, #ffe0e0);
+        }
+        .category-card .icon {
+            font-size: 3.5rem; color: #ab15a5; margin-bottom: 20px;
+            animation: pulse 1.5s infinite alternate;
+        }
+        @keyframes pulse {
+            from {transform: scale(1);}
+            to {transform: scale(1.05);}
+        }
+        .category-card h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.8rem;
+            color: #6a0572; margin-bottom: 15px;
+        }
+        .category-card p {
+            color: #555; font-size: 1rem;
+        }
+
+        /* Gallery */
+        #gallery {background-color: #f7f3f2;}
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            overflow: hidden; border-radius: 20px; box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%; height: 250px; object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(106, 5, 114, 0.7);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.4s ease;
+            border-radius: 20px;
+        }
+        .gallery-item:hover .gallery-overlay {opacity: 1;}
+        .gallery-overlay h4 {color: #fff; font-size: 1.5rem; text-align: center; font-family: 'Playfair Display', serif;}
+
+        /* Contact */
+        #contact {background-color: #fcebeb;}
+        .contact-content {
+            display: flex; justify-content: center; align-items: flex-start;
+            gap: 50px; flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1; min-width: 300px;
+            background: #fff; padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .contact-info h3 {font-family: 'Playfair Display', serif; color: #6a0572; margin-bottom: 20px;}
+        .contact-info p {margin-bottom: 10px; display: flex; align-items: center;}
+        .contact-info i {margin-right: 10px; color: #ab15a5; font-size: 1.2rem;}
+        .contact-form-container {
+            flex: 2; min-width: 300px; max-width: 600px;
+            background: #fff; padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form {display: flex; flex-direction: column;}
+        .contact-form input, .contact-form textarea {
+            padding: 15px; margin-bottom: 20px; border-radius: 12px;
+            border: 1px solid #ddd; font-size: 1.05rem; transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: #ab15a5; outline: none; box-shadow: 0 0 8px rgba(171, 21, 165, 0.3);
+        }
+        .contact-form button {
+            padding: 18px; border: none; border-radius: 12px;
+            background: linear-gradient(90deg, #ab15a5, #6a0572);
+            color: #fff; font-size: 1.2rem; cursor: pointer; transition: all 0.4s ease;
+            font-weight: 700; width: 100%;
+        }
+        .contact-form button:hover {
+            background: linear-gradient(90deg, #6a0572, #ab15a5);
+            transform: translateY(-3px); box-shadow: 0 8px 15px rgba(106, 5, 114, 0.4);
+        }
+        .whatsapp-cta {
+            display: block; text-align: center; margin-top: 25px;
+            padding: 15px 30px; background: #25d366;
+            color: #fff; border-radius: 50px; text-decoration: none;
+            font-weight: 700; font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            transition: all 0.4s ease;
+        }
+        .whatsapp-cta:hover {
+            background: #1da851; transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+        .whatsapp-cta i {margin-right: 10px;}
+
+        /* Footer */
+        footer {
+            text-align: center; padding: 30px;
+            background: linear-gradient(90deg, #6a0572, #ab15a5);
+            color: #fff; margin-top: 60px;
+            border-top-left-radius: 30px; border-top-right-radius: 30px;
+            font-size: 0.95rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.5s;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideInUp 0.6s;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #333;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            color: #6a0572;
+            margin-bottom: 30px;
+        }
+
+        .packages-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .package-card-modal {
+            background: #f7f3f2;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 25px;
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .package-card-modal:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .package-card-modal h3 {
+            color: #ab15a5;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .package-card-modal .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .package-card-modal ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .package-card-modal ul li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #555;
+        }
+        
+        .package-cta-btn {
+            display: block;
+            text-align: center;
+            background: #25d366;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.4);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .package-cta-btn:hover {
+            transform: translateY(-3px);
+            background: #1da851;
+            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.6);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            header {padding: 15px 20px;}
+            header .logo h1 {font-size: 2.2rem;}
+            nav a {margin: 0 10px; font-size: 1rem;}
+            .hero h2 {font-size: 3.2rem;}
+            .hero p {font-size: 1.2rem;}
+            h2.section-title {font-size: 2.4rem;}
+        }
+        @media (max-width: 768px) {
+            header {flex-direction: column; text-align: center;}
+            header .logo {margin-bottom: 15px;}
+            nav {margin-top: 10px;}
+            nav a {margin: 0 8px; font-size: 0.95rem;}
+            .hero {height: 70vh;}
+            .hero h2 {font-size: 2.5rem;}
+            .hero p {font-size: 1rem;}
+            .cta-button {padding: 12px 25px; font-size: 1rem;}
+            h2.section-title {font-size: 2rem;}
+            section {padding: 60px 15px;}
+            .contact-content {flex-direction: column; align-items: center;}
+            .contact-info, .contact-form-container {width: 100%;}
+            .modal-content { padding: 25px; }
+            .packages-grid { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            header .logo img {width: 50px; height: 50px;}
+            header .logo h1 {font-size: 1.8rem;}
+            nav a {margin: 0 5px; font-size: 0.85rem;}
+            .hero h2 {font-size: 2rem;}
+            .hero p {font-size: 0.9rem;}
+            .cta-button {padding: 10px 20px; font-size: 0.9rem;}
+            h2.section-title {font-size: 1.8rem;}
+            .category-card .icon {font-size: 3rem;}
+            .category-card h3 {font-size: 1.5rem;}
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img id="header-logo" alt="Hara EO Logo">
+            <h1>Hara Event Organizer</h1>
+        </div>
+        <nav>
+            <a href="#categories">Layanan</a>
+            <a href="#gallery">Galeri</a>
+            <a href="#contact">Kontak</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="hero-section">
+        <div class="hero-content">
+            <h2>Wujudkan Setiap Acara Impian Anda Bersama Hara EO</h2>
+            <p>Dari pernikahan sakral, seminar inspiratif, hingga pesta ulang tahun ceria – kami yang akan mengurusnya.</p>
+            <a href="#contact" class="cta-button">Konsultasi Sekarang</a>
+        </div>
+    </section>
+
+    <section id="categories">
+        <h2 class="section-title">Kategori Layanan Kami</h2>
+        <div class="category-grid">
+            <div class="category-card" data-package="wedding">
+                <div class="icon"><i class="fas fa-heart"></i></div>
+                <h3>Wedding Organizer</h3>
+                <p>Merencanakan dan melaksanakan pernikahan impian Anda, mulai dari konsep hingga hari H.</p>
+            </div>
+            <div class="category-card" data-package="seminar">
+                <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h3>Seminar Organizer</h3>
+                <p>Mengelola acara seminar, workshop, dan konferensi profesional dengan lancar dan berkesan.</p>
+            </div>
+            <div class="category-card" data-package="acara-kantor">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <h3>Acara Kantor</h3>
+                <p>Mengadakan gathering kantor, launching produk, atau corporate event lainnya yang sukses.</p>
+            </div>
+            <div class="category-card" data-package="birthday-organizer">
+                <div class="icon"><i class="fas fa-birthday-cake"></i></div>
+                <h3>Birthday Organizer</h3>
+                <p>Menciptakan pesta ulang tahun yang meriah dan tak terlupakan untuk segala usia.</p>
+            </div>
+            <div class="category-card" data-package="acara-keluarga">
+                <div class="icon"><i class="fas fa-users"></i></div>
+                <h3>Acara Keluarga</h3>
+                <p>Mengurus reuni keluarga, baby shower, atau syukuran dengan sentuhan personal dan hangat.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title">Momen Indah Kami</h2>
+        <div class="gallery-grid" id="gallery-grid">
+            </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Informasi Kontak</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Jl. Contoh No. 123, Kota Anda, 12345</p>
+                <p><i class="fas fa-phone"></i> +62 811-1200-5820</p>
+                <p><i class="fas fa-envelope"></i> info@haraorganizer.com</p>
+                <p><i class="fab fa-instagram"></i> @hara.eo</p>
+            </div>
+            <div class="contact-form-container">
+                <h3>Kirimkan Pesan Anda</h3>
+                <form class="contact-form" action="https://formspree.io/f/your_form_id" method="POST">
+                    <input type="text" name="name" placeholder="Nama Lengkap" required>
+                    <input type="email" name="email" placeholder="Email Anda" required>
+                    <textarea name="message" rows="6" placeholder="Pesan atau Pertanyaan Anda" required></textarea>
+                    <button type="submit">Kirim Pesan</button>
+                    <a class="whatsapp-cta" href="https://wa.me/6281112005820" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chat Via WhatsApp
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Hara Event Organizer. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <div id="package-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title"></h2>
+            <div id="packages-container" class="packages-grid">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // Objek untuk menyimpan semua URL gambar
+        const imageAssets = {
+            logo: "LOGO.png",
+            heroBackground: "Background Judul.jpg",
+            gallery: [
+                { src: "Nikahan.jpg", alt: "Wedding", title: "Pernikahan" },
+                { src: "Seminar.jpg", alt: "Seminar", title: "Seminar" },
+                { src: "Kantor.jpg", alt: "Corporate Event", title: "Acara Kantor" },
+                { src: "Ulang Tahun.jpg", alt: "Birthday Party", title: "Pesta Ulang Tahun" },
+                { src: "Family Gathering.jpg", alt: "Family Gathering", title: "Acara Keluarga" },
+                { src: "LAMARAN.jpg", alt: "Engagement", title: "Pertunangan" }
+            ]
+        };
+
+        // Objek untuk menyimpan data paket untuk setiap kategori
+        const packageData = {
+            wedding: {
+                categoryName: "Wedding Organizer",
+                title: "Paket Wedding Organizer",
+                packages: [
+                    {
+                        name: "Paket Silver",
+                        price: "Rp 5.000.000",
+                        benefits: [
+                            "Konsultasi awal",
+                            "Rundown acara",
+                            "Koordinasi vendor dasar"
+                        ]
+                    },
+                    {
+                        name: "Paket Gold",
+                        price: "Rp 10.000.000",
+                        benefits: [
+                            "Konsultasi komprehensif",
+                            "Manajemen vendor penuh",
+                            "Tim pelaksana hari-H",
+                            "Bantuan desain dekorasi"
+                        ]
+                    }
+                ]
+            },
+            seminar: {
+                categoryName: "Seminar Organizer",
+                title: "Paket Seminar Organizer",
+                packages: [
+                    {
+                        name: "Paket Basic",
+                        price: "Rp 3.500.000",
+                        benefits: [
+                            "Manajemen registrasi peserta",
+                            "Pengaturan ruang acara",
+                            "Konsultasi teknis dasar"
+                        ]
+                    },
+                    {
+                        name: "Paket Premium",
+                        price: "Rp 7.500.000",
+                        benefits: [
+                            "Manajemen pembicara & narasumber",
+                            "Publikasi media sosial",
+                            "Layanan catering & dokumentasi",
+                            "Evaluasi pasca-acara"
+                        ]
+                    }
+                ]
+            },
+            'acara-kantor': {
+                categoryName: "Acara Kantor",
+                title: "Paket Acara Kantor",
+                packages: [
+                    {
+                        name: "Paket Standar",
+                        price: "Rp 4.000.000",
+                        benefits: [
+                            "Pengelolaan logistik",
+                            "Rundown acara",
+                            "Tim koordinator di lokasi"
+                        ]
+                    },
+                    {
+                        name: "Paket All-in",
+                        price: "Rp 9.000.000",
+                        benefits: [
+                            "Konsep tema acara",
+                            "Hiburan & MC profesional",
+                            "Dokumentasi foto & video",
+                            "Layanan after-event"
+                        ]
+                    }
+                ]
+            },
+            'birthday-organizer': {
+                categoryName: "Birthday Organizer",
+                title: "Paket Birthday Organizer",
+                packages: [
+                    {
+                        name: "Paket Pesta Ceria",
+                        price: "Rp 2.500.000",
+                        benefits: [
+                            "Konsep tema sederhana",
+                            "Dekorasi dasar",
+                            "Koordinasi vendor catering & kue"
+                        ]
+                    },
+                    {
+                        name: "Paket Pesta Megah",
+                        price: "Rp 6.000.000",
+                        benefits: [
+                            "Desain & dekorasi custom",
+                            "Entertainment (pesulap, badut, dll.)",
+                            "Dokumentasi & souvenir",
+                            "Tim pelaksana acara"
+                        ]
+                    }
+                ]
+            },
+            'acara-keluarga': {
+                categoryName: "Acara Keluarga",
+                title: "Paket Acara Keluarga",
+                packages: [
+                    {
+                        name: "Paket Kumpul",
+                        price: "Rp 3.000.000",
+                        benefits: [
+                            "Pengaturan venue",
+                            "Layanan catering",
+                            "Koordinasi agenda"
+                        ]
+                    },
+                    {
+                        name: "Paket Hangat",
+                        price: "Rp 7.000.000",
+                        benefits: [
+                            "Desain tema personal",
+                            "Hiburan & MC",
+                            "Dokumentasi foto & video",
+                            "Aktivitas dan games keluarga"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set logo di header
+            document.getElementById('header-logo').src = imageAssets.logo;
+
+            // Set background Hero Section
+            const heroSection = document.getElementById('hero-section');
+            heroSection.style.backgroundImage = `url('${imageAssets.heroBackground}')`;
+
+            // Render gambar galeri
+            const galleryGrid = document.getElementById('gallery-grid');
+            imageAssets.gallery.forEach(image => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${image.src}" alt="${image.alt}">
+                    <div class="gallery-overlay"><h4>${image.title}</h4></div>
+                `;
+                galleryGrid.appendChild(galleryItem);
+            });
+
+            // --- FUNGSI BARU UNTUK MODAL ---
+            const modal = document.getElementById('package-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const packagesContainer = document.getElementById('packages-container');
+            const closeBtn = document.querySelector('.close-btn');
+            const categoryCards = document.querySelectorAll('.category-card');
+
+            // Fungsi untuk menampilkan modal dan mengisi konten
+            function openModal(packageType) {
+                const data = packageData[packageType];
+                if (!data) return;
+
+                modalTitle.textContent = data.title;
+                packagesContainer.innerHTML = '';
+
+                data.packages.forEach(pkg => {
+                    const packageCard = document.createElement('div');
+                    packageCard.className = 'package-card-modal';
+                    
+                    let benefitsList = pkg.benefits.map(benefit => `<li><i class="fas fa-check-circle" style="color:#25d366; margin-right: 5px;"></i>${benefit}</li>`).join('');
+
+                    const categoryName = encodeURIComponent(data.categoryName);
+                    const packageName = encodeURIComponent(pkg.name);
+                    const whatsappMessage = `Halo, saya tertarik dengan paket *${packageName}* untuk acara *${categoryName}*. Mohon informasi lebih lanjut.`;
+                    const whatsappLink = `https://wa.me/6281112005820?text=${whatsappMessage}`;
+
+                    packageCard.innerHTML = `
+                        <h3>${pkg.name}</h3>
+                        <div class="price">${pkg.price}</div>
+                        <ul>${benefitsList}</ul>
+                        <a href="${whatsappLink}" target="_blank" class="package-cta-btn">
+                            <i class="fab fa-whatsapp"></i> Pilih Paket Ini
+                        </a>
+                    `;
+                    packagesContainer.appendChild(packageCard);
+                });
+
+                modal.style.display = 'flex';
+            }
+
+            // Fungsi untuk menutup modal
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+            
+            // Tambahkan event listener ke setiap kartu kategori
+            categoryCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const packageType = card.getAttribute('data-package');
+                    openModal(packageType);
+                });
+            });
+
+            // Tutup modal saat tombol silang diklik
+            closeBtn.addEventListener('click', closeModal);
+
+            // Tutup modal saat area luar diklik
+            window.addEventListener('click', (event) => {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            });
+
+            // --- SCRIPT LAMA ---
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Parallax effect for Hero section
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.scrollY;
+                heroSection.style.backgroundPositionY = -scrollPosition * 0.3 + 'px';
+            });
+        });
+    </script>
+</body>
+</html>
